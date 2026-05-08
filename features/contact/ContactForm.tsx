@@ -1,5 +1,6 @@
 "use client"
 
+import Script from "next/script"
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import { CheckCircle2, Mail, MapPin, Phone, Sparkles } from "lucide-react"
@@ -17,6 +18,18 @@ import type { ContactFormData, FormErrors, FormStep } from "./types"
 import { getStepErrors } from "./validation"
 import { getCallingCodeByRegion } from "./countryCallingCodes"
 import { useLanguage } from "@/features/i18n/LanguageProvider"
+
+const RECAPTCHA_ACTION = "contact_submit"
+const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
+}
 
 const initialFormData: ContactFormData = {
   name: "",
@@ -69,6 +82,31 @@ export default function ContactForm() {
     })
   }
 
+  const getRecaptchaToken = async () => {
+    if (!recaptchaSiteKey) {
+      return null
+    }
+
+    const grecaptcha = await new Promise<Window["grecaptcha"]>((resolve) => {
+      if (window.grecaptcha) {
+        resolve(window.grecaptcha)
+        return
+      }
+
+      window.setTimeout(() => resolve(window.grecaptcha), 1200)
+    })
+
+    if (!grecaptcha) {
+      return null
+    }
+
+    await new Promise<void>((resolve) => {
+      grecaptcha.ready(resolve)
+    })
+
+    return grecaptcha.execute(recaptchaSiteKey, { action: RECAPTCHA_ACTION })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -85,6 +123,14 @@ export default function ContactForm() {
 
     setIsSubmitting(true)
 
+    const recaptchaToken = await getRecaptchaToken().catch(() => null)
+
+    if (!recaptchaToken) {
+      setIsSubmitting(false)
+      setFormErrors({ form: text.recaptchaError })
+      return
+    }
+
     const selectedService = text.steps.details.options.find((option) => option.value === formData.service)
 
     const response = await fetch("/api/contact", {
@@ -95,6 +141,7 @@ export default function ContactForm() {
         phone: `${formData.countryCode} ${formData.phone}`,
         language,
         serviceLabel: selectedService?.label ?? formData.service,
+        recaptchaToken,
       }),
     }).catch(() => null)
 
@@ -104,13 +151,15 @@ export default function ContactForm() {
       const payload = await response?.json().catch(() => null)
       const errorCode = payload && typeof payload === "object" && "code" in payload ? payload.code : undefined
       const errorMessage =
-        errorCode === "MAILJET_ACCOUNT_BLOCKED"
-          ? text.mailjetAccountBlocked
-          : errorCode === "MAILJET_AUTH_ERROR"
-            ? text.mailjetAuthError
-            : response?.status === 503
-              ? text.serverError
-              : text.networkError
+        errorCode === "RECAPTCHA_FAILED"
+          ? text.recaptchaError
+          : errorCode === "MAILJET_ACCOUNT_BLOCKED"
+            ? text.mailjetAccountBlocked
+            : errorCode === "MAILJET_AUTH_ERROR"
+              ? text.mailjetAuthError
+              : response?.status === 503
+                ? text.serverError
+                : text.networkError
 
       setFormErrors({ form: errorMessage })
       return
@@ -161,6 +210,12 @@ export default function ContactForm() {
       className="relative min-h-screen flex items-center justify-center bg-background text-foreground py-24 overflow-hidden"
       id="contact"
     >
+      {recaptchaSiteKey ? (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+          strategy="afterInteractive"
+        />
+      ) : null}
       <NetworkBackground color={theme === "dark" ? "#f43f5e" : "#be123c"} density={40} />
 
       <ResponsiveContainer maxWidth="2xl" paddingX="lg">

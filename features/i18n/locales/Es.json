@@ -427,7 +427,8 @@
     "submissionUnavailable": "El envío del formulario aún no está habilitado. Pronto integraremos un nuevo método seguro de contacto.",
     "mailjetAccountBlocked": "No se pudo enviar porque la cuenta de Mailjet está bloqueada temporalmente. Contacta soporte de Mailjet para reactivarla o actualiza las credenciales.",
     "mailjetAuthError": "No se pudo autenticar con Mailjet. Verifica MAILJET_API_KEY, MAILJET_SECRET_KEY y que el remitente esté validado.",
-    "successHighlight": "También te enviamos una confirmación con el resumen de tu solicitud."
+    "successHighlight": "También te enviamos una confirmación con el resumen de tu solicitud.",
+    "recaptchaError": "No pudimos validar reCAPTCHA. Actualiza la página e intenta enviar el formulario nuevamente."
   },
   "footer": {
     "tagline": "Transformando ideas en realidad digital",

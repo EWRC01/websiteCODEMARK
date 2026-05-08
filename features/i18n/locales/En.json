@@ -427,7 +427,8 @@
     "submissionUnavailable": "Form submission is not enabled yet. We will integrate a new secure contact method soon.",
     "mailjetAccountBlocked": "The message could not be sent because the Mailjet account is temporarily blocked. Contact Mailjet support to reactivate it or update the credentials.",
     "mailjetAuthError": "Mailjet authentication failed. Verify MAILJET_API_KEY, MAILJET_SECRET_KEY, and that the sender is validated.",
-    "successHighlight": "We also sent you a confirmation email with your request summary."
+    "successHighlight": "We also sent you a confirmation email with your request summary.",
+    "recaptchaError": "We could not validate reCAPTCHA. Refresh the page and try submitting the form again."
   },
   "footer": {
     "tagline": "Transforming ideas into digital reality",
