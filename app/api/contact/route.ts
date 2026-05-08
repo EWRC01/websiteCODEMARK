@@ -4,6 +4,7 @@ import { buildContactConfirmationEmail, buildContactEmail, type ContactEmailPayl
 const MAILJET_SEND_ENDPOINT = "https://api.mailjet.com/v3.1/send"
 const RECAPTCHA_VERIFY_ENDPOINT = "https://www.google.com/recaptcha/api/siteverify"
 const RECAPTCHA_ACTION = "contact_submit"
+const LOCAL_RECAPTCHA_BYPASS_TOKEN = "local-dev-recaptcha-bypass"
 const validServices = new Set(["web", "security", "ai", "optimization", "marketing", "consulting", "electronic-invoicing"])
 
 type ContactApiErrorCode =
@@ -83,8 +84,9 @@ function getEnv() {
   const fromEmail = process.env.CONTACT_FROM_EMAIL
   const toEmails = parseEmailList(process.env.CONTACT_TO_EMAIL || process.env.CONTACT_ADMIN_EMAIL || "")
   const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY
+  const allowLocalRecaptchaBypass = process.env.RECAPTCHA_ALLOW_LOCALHOST_BYPASS !== "false"
 
-  if (!apiKey || !secretKey || !fromEmail || toEmails.length === 0 || !recaptchaSecretKey) {
+  if (!apiKey || !secretKey || !fromEmail || toEmails.length === 0 || (!recaptchaSecretKey && !allowLocalRecaptchaBypass)) {
     return null
   }
 
@@ -96,6 +98,7 @@ function getEnv() {
     fromName: process.env.CONTACT_FROM_NAME || "CodeMark Website",
     adminName: process.env.CONTACT_TO_NAME || "CodeMark",
     recaptchaSecretKey,
+    allowLocalRecaptchaBypass,
     recaptchaMinScore: Number(process.env.RECAPTCHA_MIN_SCORE || "0.5"),
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || "https://codemark.es",
   }
@@ -148,6 +151,15 @@ function getRemoteIp(request: Request) {
   }
 
   return request.headers.get("x-real-ip") ?? undefined
+}
+
+function isLocalRequest(request: Request) {
+  const host = request.headers.get("host")?.split(":")[0]
+  return host === "localhost" || host === "127.0.0.1" || host === "::1"
+}
+
+function canBypassRecaptchaForLocalhost(request: Request, token: string, allowLocalRecaptchaBypass: boolean) {
+  return allowLocalRecaptchaBypass && token === LOCAL_RECAPTCHA_BYPASS_TOKEN && isLocalRequest(request)
 }
 
 function isPassingRecaptcha(verification: RecaptchaVerification, minimumScore: number) {
@@ -283,12 +295,20 @@ export async function POST(request: Request) {
     return apiError("CONTACT_INVALID_PAYLOAD", 400, "Invalid contact form payload.")
   }
 
-  const passedRecaptcha = await verifyRecaptchaToken(
-    env.recaptchaSecretKey,
+  const passedRecaptcha = canBypassRecaptchaForLocalhost(
+    request,
     payload.recaptchaToken,
-    getRemoteIp(request),
-    Number.isFinite(env.recaptchaMinScore) ? env.recaptchaMinScore : 0.5,
+    env.allowLocalRecaptchaBypass,
   )
+    ? true
+    : env.recaptchaSecretKey
+      ? await verifyRecaptchaToken(
+          env.recaptchaSecretKey,
+          payload.recaptchaToken,
+          getRemoteIp(request),
+          Number.isFinite(env.recaptchaMinScore) ? env.recaptchaMinScore : 0.5,
+        )
+      : false
 
   if (!passedRecaptcha) {
     return apiError("RECAPTCHA_FAILED", 403, "reCAPTCHA verification failed.")
