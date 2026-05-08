@@ -26,10 +26,17 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;")
 }
 
-function normalizeBaseUrl(value?: string) {
-  if (!value) return "https://codemark.es"
-  const withProtocol = value.startsWith("http://") || value.startsWith("https://") ? value : `https://${value}`
-  return withProtocol.replace(/\/$/, "")
+function brandLogoMarkup() {
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;min-width:260px;">
+      <tr>
+        <td width="68" height="68" align="center" valign="middle" style="width:68px;height:68px;border-radius:20px;background:${brand.primary};font-family:Arial,Helvetica,sans-serif;color:#FFFFFF;font-size:26px;line-height:68px;font-weight:900;mso-line-height-rule:exactly;">&lt;/&gt;</td>
+        <td style="padding-left:16px;font-family:Arial,Helvetica,sans-serif;vertical-align:middle;">
+          <div style="font-size:34px;line-height:1;font-weight:900;letter-spacing:-0.04em;color:${brand.dark};">Code<span style="color:${brand.primary};">Mark</span></div>
+          <div style="padding-top:7px;font-size:11px;line-height:1.2;font-weight:800;letter-spacing:0.22em;color:${brand.muted};text-transform:uppercase;">Digital Solutions</div>
+        </td>
+      </tr>
+    </table>`
 }
 
 function getCopy(language: ContactEmailLanguage) {
@@ -80,9 +87,8 @@ function detailRow(label: string, value: string) {
     </tr>`
 }
 
-export function buildContactEmail(payload: ContactEmailPayload, siteUrl?: string) {
+export function buildContactEmail(payload: ContactEmailPayload, _siteUrl?: string) {
   const copy = getCopy(payload.language)
-  const logoUrl = `${normalizeBaseUrl(siteUrl)}/codemark-logo.svg`
   const safeMessage = escapeHtml(payload.message.trim()).replace(/\n/g, "<br />")
 
   const html = `<!doctype html>
@@ -101,7 +107,7 @@ export function buildContactEmail(payload: ContactEmailPayload, siteUrl?: string
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:680px;background:${brand.surface};border:1px solid ${brand.border};border-radius:24px;overflow:hidden;box-shadow:0 18px 50px rgba(15,23,42,0.10);">
             <tr>
               <td style="padding:28px 28px 18px 28px;background:${brand.surface};border-bottom:1px solid ${brand.border};">
-                <img src="${logoUrl}" width="210" alt="CodeMark" style="display:block;width:210px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;" />
+                ${brandLogoMarkup()}
               </td>
             </tr>
             <tr>
@@ -200,9 +206,8 @@ function getConfirmationCopy(language: ContactEmailLanguage) {
   }
 }
 
-export function buildContactConfirmationEmail(payload: ContactEmailPayload, siteUrl?: string) {
+export function buildContactConfirmationEmail(payload: ContactEmailPayload, _siteUrl?: string) {
   const copy = getConfirmationCopy(payload.language)
-  const logoUrl = `${normalizeBaseUrl(siteUrl)}/codemark-logo.svg`
   const safeMessage = escapeHtml(payload.message.trim()).replace(/\n/g, "<br />")
   const firstName = payload.name.trim().split(/\s+/)[0] || payload.name.trim()
 
@@ -222,7 +227,7 @@ export function buildContactConfirmationEmail(payload: ContactEmailPayload, site
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background:${brand.surface};border:1px solid ${brand.border};border-radius:24px;overflow:hidden;box-shadow:0 18px 50px rgba(15,23,42,0.10);">
             <tr>
               <td style="padding:28px;background:${brand.surface};border-bottom:1px solid ${brand.border};">
-                <img src="${logoUrl}" width="210" alt="CodeMark" style="display:block;width:210px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;" />
+                ${brandLogoMarkup()}
               </td>
             </tr>
             <tr>
