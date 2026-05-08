@@ -1,7 +1,7 @@
 // lib/seo.ts
 import type { Metadata } from "next"
 
-export const SITE_URL = "https://codemark.es"
+export const SITE_URL = "https://codemarksv.com/"
 export const BRAND = "CodeMark"
 
 export const DEFAULT_TITLE = BRAND
@@ -101,6 +101,13 @@ const KEYWORDS: string[] = [
   "electronic invoice integration",
   "e-invoicing solutions",
   "tax compliance automation",
+  "facturación electrónica para pymes",
+  "factura electrónica para empresas",
+  "factura electrónica con contabilidad",
+  "factura electrónica con ERP",
+  "api de factura electrónica el salvador",
+  "ministerio de hacienda factura electrónica",
+  "factura electrónica normativa el salvador",
 
   // English SEO
   "web development agency",

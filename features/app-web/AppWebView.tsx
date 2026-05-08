@@ -25,7 +25,7 @@ import {
 import { useLanguage } from "@/features/i18n/LanguageProvider"
 
 const featureIcons = [ReceiptText, PackageCheck, BarChart3, ShieldCheck, FileText, Headphones, Calculator]
-const appLogo = "/images/app-web/tacufact-logo.svg"
+const appLogo = "/images/app-web/logo.png"
 
 type ImageSlide = {
   src: string
@@ -36,22 +36,22 @@ type ImageSlide = {
 // Replace these routes with your real TacuFact screenshots when the final images are ready.
 const productScreenshotSlides: ImageSlide[] = [
   {
-    src: "/images/app-web/product-slider/01-dte-type.png",
+    src: "/images/app-web/product-slider/dte-type.png",
     alt: "TacuFact DTE emission screen",
     label: "DTE",
   },
   {
-    src: "/images/app-web/product-slider/02-payment-review.png",
+    src: "/images/app-web/product-slider/payment-review.png",
     alt: "TacuFact payment and review screen",
     label: "Pago",
   },
   {
-    src: "/images/app-web/product-slider/03-login.png",
+    src: "/images/app-web/product-slider/login.png",
     alt: "TacuFact login screen",
     label: "Login",
   },
   {
-    src: "/images/app-web/product-slider/04-register.png",
+    src: "/images/app-web/product-slider/register.png",
     alt: "TacuFact register screen",
     label: "Registro",
   },

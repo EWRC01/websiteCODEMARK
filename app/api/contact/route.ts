@@ -100,7 +100,7 @@ function getEnv() {
     recaptchaSecretKey,
     allowLocalRecaptchaBypass,
     recaptchaMinScore: Number(process.env.RECAPTCHA_MIN_SCORE || "0.5"),
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || "https://codemark.es",
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL || "https://codemarksv.com/",
   }
 }
 

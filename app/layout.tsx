@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               name: "CodeMark",
-              url: "https://codemark.es",
+              url: "https://codemarksv.com/",
               areaServed: "SV",
               address: { "@type": "PostalAddress", addressCountry: "SV", addressLocality: "San Miguel" },
               sameAs: ["https://www.facebook.com/people/CodeMark/100092354044797"]
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/c.ico" type="image/x-icon" />
+        <link rel="icon" href="/co.ico" type="image/x-icon" />
       </head>
       <body>
         <LanguageProvider>

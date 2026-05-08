@@ -6,14 +6,14 @@ import { useLanguage } from "@/features/i18n/LanguageProvider"
 
 const serviceMeta = [
   {
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pc-KNBUR4C3FOMOWSBhrlYFFfBLZ8z86j.png",
+    image: "/images/develop.png",
     color: "from-blue-500 to-cyan-500",
     icon: "💻",
     category: "web",
     featured: true,
   },
   {
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ciber-b0l8wgBU8LBHSTyGXbTN2lsGo5YvDC.png",
+    image: "/images/security.png",
     color: "from-purple-500 to-indigo-500",
     icon: "🔒",
     category: "security",
@@ -27,14 +27,14 @@ const serviceMeta = [
     featured: false,
   },
   {
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mante-0kuzNJCUTbAPH91sVYUUgLW0aMxBM0.png",
+    image: "/images/performance.png",
     color: "from-amber-500 to-orange-500",
     icon: "⚡",
     category: "performance",
     featured: false,
   },
   {
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mar-QxMQVCK6F2VSorxswBEbTQFu7RTsqT.png",
+    image: "/images/marketing.png",
     color: "from-pink-500 to-rose-500",
     icon: "📈",
     category: "marketing",
@@ -48,7 +48,7 @@ const serviceMeta = [
     featured: false,
   },
   {
-    image: "/images/consulting.png",
+    image: "/images/facturacion.png",
     color: "from-cyan-500 to-blue-500",
     icon: "🧾",
     category: "electronic-invoicing",
