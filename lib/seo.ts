@@ -1,14 +1,14 @@
 // lib/seo.ts
 import type { Metadata } from "next"
 
-export const SITE_URL = "https://codemark.es"      
+export const SITE_URL = "https://codemark.es"
 export const BRAND = "CodeMark"
 
 export const DEFAULT_TITLE = BRAND
 export const DEFAULT_DESC =
-  "Desarrollo web, eCommerce y ciberseguridad en El Salvador. Sitios rápidos, seguros y listos para SEO."
+  "Desarrollo web, eCommerce, ciberseguridad y facturación electrónica. Web development, eCommerce, cybersecurity, and electronic invoicing solutions."
 
-// --- PALABRAS CLAVE (globales) ---
+// --- Global keywords ---
 const KEYWORDS: string[] = [
   // Core
   "desarrollo web el salvador",
@@ -61,7 +61,7 @@ const KEYWORDS: string[] = [
   "rich results",
   "auditoría seo técnica",
 
-  // Local (San Miguel + duplicables a otras ciudades si aplican)
+  // Local
   "desarrollo web san miguel",
   "diseño de páginas web san miguel",
   "ecommerce san miguel",
@@ -91,13 +91,33 @@ const KEYWORDS: string[] = [
   "por qué mi tienda no convierte",
   "cómo aceptar pagos en línea el salvador",
 
-  // Navegacionales de marca
+
+  // Electronic invoicing / Facturación electrónica
+  "factura electrónica",
+  "facturación electrónica el salvador",
+  "integración factura electrónica",
+  "software factura electrónica",
+  "electronic invoicing",
+  "electronic invoice integration",
+  "e-invoicing solutions",
+  "tax compliance automation",
+
+  // English SEO
+  "web development agency",
+  "professional website development",
+  "custom ecommerce development",
+  "cybersecurity consulting",
+  "web application penetration testing",
+  "technical SEO services",
+  "website performance optimization",
+
+  // Brand navigation
   "codemark desarrollo web",
   "codemark ciberseguridad",
   "codemark ecommerce",
 ]
 
-// --- DEFAULTS + HELPER ---
+// --- Defaults + helper ---
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -106,8 +126,7 @@ export const defaultMetadata: Metadata = {
   },
   description: DEFAULT_DESC,
   applicationName: BRAND,
-  // Nota: Google ya no usa <meta name="keywords"> para ranking,
-  // pero Next permite mantenerlas como referencia/consistencia.
+  // Google no longer uses meta keywords for ranking, but Next supports them for consistency.
   keywords: KEYWORDS,
   robots: {
     index: true,
@@ -122,6 +141,10 @@ export const defaultMetadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    languages: {
+      es: "/",
+      en: "/?lang=en",
+    },
   },
   openGraph: {
     type: "website",
@@ -130,6 +153,7 @@ export const defaultMetadata: Metadata = {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESC,
     locale: "es_SV",
+    alternateLocale: ["en_US"],
   },
   twitter: {
     card: "summary_large_image",
@@ -139,7 +163,7 @@ export const defaultMetadata: Metadata = {
 type BuildOpts = {
   title?: string
   description?: string
-  path?: string       // ej: "/servicios/desarrollo-web"
+  path?: string
   ogImage?: string
 }
 
@@ -152,7 +176,13 @@ export function buildMetadata(opts: BuildOpts = {}): Metadata {
       ? { default: opts.title, template: `%s | ${BRAND}` }
       : defaultMetadata.title,
     description: opts.description ?? defaultMetadata.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        es: url,
+        en: `${url}${url.includes("?") ? "&" : "?"}lang=en`,
+      },
+    },
     openGraph: {
       ...defaultMetadata.openGraph,
       url: `${SITE_URL}${url}`,

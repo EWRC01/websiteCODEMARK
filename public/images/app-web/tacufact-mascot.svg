@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 720" fill="none">
+  <path d="M123 441c-62 14-96 43-99 80-2 23 12 39 34 36 25-3 30-33 49-50 20-18 44-25 79-28" stroke="url(#tail)" stroke-width="34" stroke-linecap="round"/>
+  <path d="M146 197c-43-52-9-118 49-88 20 10 31 31 35 61" fill="#0b1220"/>
+  <circle cx="185" cy="137" r="34" fill="#fb7aae"/>
+  <path d="M377 197c43-52 9-118-49-88-20 10-31 31-35 61" fill="#0b1220"/>
+  <circle cx="338" cy="137" r="34" fill="#fb7aae"/>
+  <path d="M142 273c-59-42-89-39-103-18-14 22 10 58 79 89M378 273c59-42 89-39 103-18 14 22-10 58-79 89" stroke="#111827" stroke-width="39" stroke-linecap="round"/>
+  <path d="M130 328c31-69 78-104 131-104s102 35 131 104c19 45 14 115-20 162-29 40-68 63-111 63s-82-23-111-63c-34-47-39-117-20-162Z" fill="#111827"/>
+  <path d="M156 331c31 32 67 48 105 48 38 0 75-16 105-48 18 45 11 103-18 139-23 29-54 44-87 44s-64-15-87-44c-29-36-36-94-18-139Z" fill="url(#shirt)"/>
+  <path d="M181 245c20-76 141-76 163 0 16 54-14 116-82 116s-96-62-81-116Z" fill="#fffdf8"/>
+  <path d="M242 276c8 15 30 15 39 0l-20 32-19-32Z" fill="#fb7185"/>
+  <circle cx="222" cy="257" r="15" fill="#0f172a"/><circle cx="302" cy="257" r="15" fill="#0f172a"/>
+  <circle cx="228" cy="249" r="6" fill="white"/><circle cx="308" cy="249" r="6" fill="white"/>
+  <rect x="187" y="224" width="69" height="52" rx="15" stroke="#0f172a" stroke-width="11"/>
+  <rect x="270" y="224" width="69" height="52" rx="15" stroke="#0f172a" stroke-width="11"/>
+  <path d="M256 248h14" stroke="#0f172a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M214 557h73M303 557h73" stroke="#2563eb" stroke-width="33" stroke-linecap="round"/>
+  <path d="M219 525v39M337 525v39" stroke="#111827" stroke-width="31" stroke-linecap="round"/>
+  <path d="M230 616h75M329 616h75" stroke="#fff" stroke-width="38" stroke-linecap="round"/>
+  <path d="M225 622h88M323 622h88" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
+  <text x="226" y="455" fill="white" font-family="Arial,sans-serif" font-weight="900" font-size="50">TF</text>
+  <defs>
+    <linearGradient id="shirt" x1="150" y1="306" x2="376" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+    <linearGradient id="tail" x1="34" y1="439" x2="192" y2="528" gradientUnits="userSpaceOnUse"><stop stop-color="#fb7185"/><stop offset="1" stop-color="#f9a8d4"/></linearGradient>
+  </defs>
+</svg>

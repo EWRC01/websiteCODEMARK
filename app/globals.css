@@ -88,14 +88,21 @@
   * {
     @apply border-border;
   }
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overflow-y: visible;
     font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden; /* Asegura que no haya scroll horizontal en el body */
-  }
-  html {
-    overflow-x: hidden; /* Asegura que no haya scroll horizontal en el html */
-    scroll-behavior: smooth; /* ¡Añade esta línea para el desplazamiento suave! */
   }
 }
 

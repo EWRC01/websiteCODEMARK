@@ -2,171 +2,100 @@
 
 ## Estructura del Proyecto
 
-El proyecto está organizado siguiendo una arquitectura modular y escalable:
+El proyecto está organizado con **Screaming Architecture**: las carpetas principales comunican dominios del negocio y no solo tipos técnicos. Esta organización no cambia el diseño visual original; el diseño debe permanecer alineado con el baseline visual solicitado (`3a8b516e8c3e61a984cefc0f40563ebe720a8e38`) y solo se deben reubicar archivos para que el proyecto sea más fácil de navegar.
 
-\`\`\`
+```text
 codemark-website/
-│
-├── app/                      # Directorio principal de Next.js App Router
-│   ├── layout.tsx            # Layout principal de la aplicación
-│   ├── page.tsx              # Página principal
-│   └── theme-provider.tsx    # Proveedor de tema (claro/oscuro)
-│
-├── components/               # Componentes de la aplicación
-│   ├── common/               # Componentes comunes reutilizables
-│   │   ├── buttons/          # Botones reutilizables
-│   │   ├── cards/            # Tarjetas reutilizables
-│   │   ├── containers/       # Contenedores reutilizables
-│   │   ├── icons/            # Componentes de iconos
-│   │   └── typography/       # Componentes de texto
-│   │
-│   ├── layout/               # Componentes de layout
-│   │   ├── footer/           # Componentes del pie de página
-│   │   └── header/           # Componentes del encabezado
-│   │
-│   ├── sections/             # Secciones principales de la página
-│   │   ├── about/            # Sección Quiénes Somos
-│   │   ├── benefits/         # Sección Beneficios
-│   │   ├── contact/          # Formulario de contacto
-│   │   ├── home/             # Sección principal
-│   │   ├── team/             # Sección Nuestro Equipo
-│   │   ├── services/         # Sección Servicios
-│   │   ├── tech-stack/       # Sección Stack Tecnológico
-│   │   └── values/           # Sección Valores
-│   │
-│   └── ui/                   # Componentes de UI específicos
-│       ├── animations/       # Componentes de animación
-│       ├── backgrounds/      # Fondos personalizados
-│       └── loaders/          # Componentes de carga
-│
+├── app/                      # Next.js App Router: rutas, layout y páginas
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── clientes/
+├── features/                 # Dominios y secciones del producto
+│   ├── about/
+│   ├── benefits/
+│   ├── clients/              # Sección, cards, grid, data y tipos de clientes
+│   ├── contact/              # Formulario, pasos, validación y tipos
+│   ├── demo/
+│   ├── home/
+│   ├── layout/               # Header, Footer y navegación
+│   ├── services/             # Servicios, cards, data y tipos
+│   ├── team/
+│   ├── tech-stack/
+│   └── values/
+├── shared/                   # Código compartido no asociado a un dominio
+│   └── backgrounds/
+├── components/ui/            # Primitivas UI reutilizables
 ├── hooks/                    # Custom hooks
-│   ├── animations/           # Hooks para animaciones
-│   ├── forms/                # Hooks para formularios
-│   ├── media/                # Hooks para media queries
-│   └── theme/                # Hooks para el tema
-│
-├── lib/                      # Utilidades y funciones
-│   ├── animations.ts         # Utilidades de animación
-│   ├── constants.ts          # Constantes globales
-│   ├── types.ts              # Tipos comunes
-│   └── utils.ts              # Funciones de utilidad general
-│
+├── lib/                      # Utilidades globales
 ├── public/                   # Archivos estáticos
-│   ├── fonts/                # Fuentes
-│   └── images/               # Imágenes
-│
-├── styles/                   # Estilos globales y módulos CSS
-│   ├── globals.css           # Estilos globales
-│   └── variables.css         # Variables CSS
-│
-├── .env.example              # Ejemplo de variables de entorno
-├── next.config.mjs           # Configuración de Next.js
-├── package.json              # Dependencias y scripts
-├── pnpm-lock.yaml            # Lock file de pnpm
-├── README.md                 # Documentación
-└── tsconfig.json             # Configuración de TypeScript
-\`\`\`
+├── styles/                   # Estilos globales
+└── utils/                    # Utilidades auxiliares
+```
 
 ## Instalación
 
 Para configurar y ejecutar el proyecto localmente, sigue estos pasos:
 
-1.  **Clona el repositorio:**
-    \`\`\`bash
-    git clone [URL_DEL_REPOSITORIO]
-    cd codemark-website
-    \`\`\`
-    (Reemplaza `[URL_DEL_REPOSITORIO]` con la URL real de tu repositorio)
+1. **Clona el repositorio:**
 
-2.  **Instala las dependencias con pnpm:**
-    Asegúrate de tener pnpm instalado. Si no lo tienes, puedes instalarlo con npm:
-    \`\`\`bash
-    npm install -g pnpm
-    \`\`\`
-    Luego, instala las dependencias del proyecto:
-    \`\`\`bash
-    pnpm install
-    \`\`\`
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd codemark-website
+   ```
 
-3.  **Configura las variables de entorno:**
-    Crea un archivo `.env.local` en la raíz del proyecto, basándote en `.env.example`.
+2. **Instala las dependencias con pnpm:**
 
-    \`\`\`
-    # .env.local
-    # Configuración de API (si es necesario)
-    # API_URL=https://api.example.com
+   ```bash
+   pnpm install
+   ```
 
-    # Configuración de análisis (si es necesario)
-    # NEXT_PUBLIC_ANALYTICS_ID=your_analytics_id
-    \`\`\`
+3. **Ejecuta el servidor de desarrollo:**
 
-4.  **Ejecuta el servidor de desarrollo:**
-    \`\`\`bash
-    pnpm dev
-    \`\`\`
+   ```bash
+   pnpm dev
+   ```
 
-    El sitio estará disponible en `http://localhost:3000`.
+   El sitio estará disponible en `http://localhost:3000`.
 
-5.  **Construye para producción (opcional):**
-    \`\`\`bash
-    pnpm build
-    \`\`\`
+4. **Construye para producción:**
 
-    Luego, puedes iniciar el servidor de producción:
-    \`\`\`bash
-    pnpm start
-    \`\`\`
+   ```bash
+   pnpm build
+   ```
 
-## Guía de Organización de Componentes
+## Guía de Organización
 
-### Principios de Organización
+### Principios
 
-1. **Modularidad**: Cada componente debe tener una responsabilidad única y clara.
-2. **Cohesión**: Los archivos relacionados se mantienen juntos.
-3. **Reutilización**: Los componentes comunes se separan para facilitar su reutilización.
-4. **Mantenibilidad**: La estructura facilita encontrar y modificar componentes.
+1. **Screaming Architecture**: las rutas de archivos deben decir qué dominio o sección representan (`features/contact`, `features/services`, etc.).
+2. **Preservar UI/UX**: mover archivos o ajustar imports no debe cambiar textos, layout, animaciones, estilos, fuentes, labels, validaciones ni comportamiento visual respecto al baseline `3a8b516e8c3e61a984cefc0f40563ebe720a8e38`.
+3. **Cohesión**: subcomponentes, tipos, data y validaciones propias de una sección viven dentro de su feature.
+4. **Reutilización**: primitivas visuales genéricas viven en `components/ui`; elementos compartidos sin dominio viven en `shared`.
 
-### Estructura de un Componente
+### Estructura recomendada para una feature
 
-Cada componente principal debe estar en su propia carpeta con la siguiente estructura:
+```text
+features/domain-name/
+├── DomainSection.tsx     # Componente principal del dominio
+├── components/           # Subcomponentes propios del dominio
+├── data.ts               # Datos estáticos del dominio cuando aplica
+├── types.ts              # Tipos específicos del dominio
+└── validation.ts         # Reglas propias cuando aplica
+```
 
-\`\`\`
-component-name/
-├── index.ts           # Exporta el componente (para importaciones limpias)
-├── ComponentName.tsx  # Implementación principal del componente
-├── ComponentName.module.css  # Estilos específicos del componente
-└── components/        # Sub-componentes específicos (si es necesario)
-    ├── SubComponent.tsx
-    └── ...
-\`\`\`
+### Ejemplo de importación
 
-### Ejemplo de Importación
-
-\`\`\`tsx
-// Importación de componentes de secciones
-import { About } from '@/components/sections/about';
-import { Services } from '@/components/sections/services';
-
-// Importación de componentes comunes
-import { Button } from '@/components/common/buttons';
-import { Card } from '@/components/common/cards';
-
-// Importación de hooks personalizados
+```tsx
+import About from '@/features/about/About';
+import Services from '@/features/services/Services';
+import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/media';
-\`\`\`
+```
 
 ## Convenciones de Nomenclatura
 
-- **Componentes**: PascalCase (ej. `Button.tsx`, `ServiceCard.tsx`)
-- **Hooks**: camelCase con prefijo "use" (ej. `useMediaQuery.ts`, `useAnimation.ts`)
-- **Utilidades**: camelCase (ej. `formatDate.ts`, `validateEmail.ts`)
-- **Carpetas**: kebab-case (ej. `tech-stack`, `service-card`)
-- **Archivos CSS**: Mismo nombre que el componente con sufijo `.module.css`
-
-## Buenas Prácticas
-
-1. **Exportaciones Nombradas**: Preferir exportaciones nombradas sobre exportaciones por defecto para facilitar el refactoring.
-2. **Barrel Files**: Usar archivos `index.ts` para exportar componentes y simplificar importaciones.
-3. **Tipos TypeScript**: Definir interfaces y tipos en archivos separados o junto al componente que los utiliza.
-4. **Componentes Pequeños**: Mantener los componentes pequeños y enfocados en una sola responsabilidad.
-5. **Datos Estáticos**: Extraer datos estáticos a archivos separados para facilitar su mantenimiento.
+- **Componentes**: PascalCase (ej. `ServiceCard.tsx`).
+- **Hooks**: camelCase con prefijo `use` (ej. `useMediaQuery.ts`).
+- **Utilidades**: camelCase (ej. `validateEmail.ts`).
+- **Carpetas**: kebab-case cuando el nombre tenga varias palabras (ej. `tech-stack`).
+- **Datos y tipos de dominio**: `data.ts` y `types.ts` dentro de la feature correspondiente.

@@ -1,16 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',            // Static export: 100% archivos estáticos
-  trailingSlash: true,         // URLs siempre con slash al final (/about/)
-  skipTrailingSlashRedirect: true,
-  distDir: 'out',              // Carpeta de salida para el build
-
-  // No hace falta optimizar imágenes si usas SVG, pero si subes JPG/PNG también, usa una CDN externa para optimizarlas.
+  // Mantener imágenes sin optimización para conservar compatibilidad con las URLs externas existentes.
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
 
-  // Solo ignorar errores de ESLint/TS en desarrollo rápido, no en producción final
+  // Solo ignorar errores de ESLint/TS en desarrollo rápido, no en producción final.
   eslint: {
     ignoreDuringBuilds: process.env.NODE_ENV !== 'production',
   },
@@ -18,7 +13,7 @@ const nextConfig = {
     ignoreBuildErrors: process.env.NODE_ENV !== 'production',
   },
 
-  // Permite importar SVGs como componentes React (¡es lo más pro!)
+  // Permite importar SVGs como componentes React.
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -33,20 +28,20 @@ const nextConfig = {
               plugins: [
                 {
                   name: 'removeViewBox',
-                  active: false
+                  active: false,
                 },
                 {
                   name: 'cleanupIDs',
-                  active: true
-                }
-              ]
-            }
-          }
-        }
-      ]
-    });
-    return config;
-  }
-};
+                  active: true,
+                },
+              ],
+            },
+          },
+        },
+      ],
+    })
+    return config
+  },
+}
 
-export default nextConfig;
+export default nextConfig

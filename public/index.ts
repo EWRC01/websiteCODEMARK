@@ -1,1 +1,1 @@
-export { default as TechStack } from "@/components/TechStack"
+export { default as TechStack } from "@/features/tech-stack/TechStack"

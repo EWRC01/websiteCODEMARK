@@ -1,10 +1,10 @@
-// app/clientes/page.tsx
+import en from "@/features/i18n/locales/En.json"
+import es from "@/features/i18n/locales/Es.json"
 import ClientesView from "./ClientesView"
 
 export const metadata = {
-  title: "Nuestros Clientes | CodeMark",
-  description:
-    "Casos reales e impacto medible de proyectos desarrollados por CodeMark.",
+  title: `${es.clients.page.title} / ${en.clients.page.title} | CodeMark`,
+  description: `${es.clients.page.subtitle} ${en.clients.page.subtitle}`,
 }
 
 export default function Page() {

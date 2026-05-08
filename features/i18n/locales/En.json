@@ -1,0 +1,555 @@
+{
+  "nav": {
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "services": "Services",
+      "appWeb": "Web App",
+      "techStack": "Technologies",
+      "benefits": "Benefits",
+      "team": "Team",
+      "clients": "Clients",
+      "contact": "Contact"
+    }
+  },
+  "home": {
+    "eyebrow": "Welcome to CodeMark",
+    "firstLine": "We Transform",
+    "secondLine": "Ideas into",
+    "description": "Innovative web development, cutting-edge cybersecurity, and digital solutions that move your business into the future.",
+    "cta": "Start your project",
+    "rotatingWords": [
+      "Digital Reality",
+      "Unique Experiences",
+      "Innovative Solutions",
+      "Digital Products",
+      "Web Applications"
+    ]
+  },
+  "about": {
+    "tabs": [
+      {
+        "title": "Our Mission",
+        "shortTitle": "Mission",
+        "content": "At CodeMark, our mission is to transform innovative ideas into cutting-edge digital solutions. We provide custom web development, advanced cybersecurity, and performance optimization services that drive our clients' success in the digital era.",
+        "summary": "We transform ideas into innovative digital solutions"
+      },
+      {
+        "title": "Our Approach",
+        "shortTitle": "Approach",
+        "content": "Our approach centers on technical excellence, robust security, and continuous optimization. We work closely with our clients, understanding their specific needs and business goals to deliver solutions that create real, lasting impact.",
+        "summary": "Technical excellence and close collaboration with clients"
+      },
+      {
+        "title": "Our Vision",
+        "shortTitle": "Vision",
+        "content": "We aspire to be leaders in the technology industry, recognized for our innovation, integrity, and commitment to excellence. We constantly seek new ways to use technology to solve complex challenges and create a safer, more efficient digital future for our clients.",
+        "summary": "Leaders in technological innovation and excellence"
+      },
+      {
+        "title": "Our Team",
+        "shortTitle": "Team",
+        "content": "We have a diverse, highly qualified team of developers, designers, and security experts. Our passion for technology and commitment to continuous learning keep us at the forefront of the latest trends and best practices in web development and cybersecurity.",
+        "summary": "Passionate and highly qualified professionals"
+      },
+      {
+        "title": "Our Impact",
+        "shortTitle": "Impact",
+        "content": "We strive to create a positive impact not only on our clients' businesses, but also on the technology community as a whole. We actively participate in industry events, contribute to open-source projects, and promote technology education to inspire the next generation of digital innovators.",
+        "summary": "Positive impact on businesses and the technology community"
+      }
+    ],
+    "ui": {
+      "eyebrow": "Discover our DNA",
+      "title": "We Are",
+      "seeMore": "See more",
+      "seeLess": "See less",
+      "selected": "Currently selected",
+      "preview": "Hover to preview",
+      "exploration": "Exploration mode",
+      "exploreHint": "Hover over the sections to explore",
+      "manual": "Manual exploration mode",
+      "sections": "Sections",
+      "of": "of"
+    }
+  },
+  "values": {
+    "title": "Our Values",
+    "subtitle": "The core principles that guide our work",
+    "center": "Values",
+    "items": [
+      {
+        "name": "Transparency",
+        "description": "Clear and honest communication at every stage",
+        "time": "Always"
+      },
+      {
+        "name": "Commitment",
+        "description": "Solutions that exceed expectations",
+        "time": "In every project"
+      },
+      {
+        "name": "Communication",
+        "description": "Open dialogue that reflects your vision",
+        "time": "Constant"
+      },
+      {
+        "name": "Innovation",
+        "description": "At the forefront of market technologies",
+        "time": "Continuous"
+      },
+      {
+        "name": "Security",
+        "description": "Best practices implemented",
+        "time": "Priority"
+      },
+      {
+        "name": "Creativity",
+        "description": "A unique approach to complex problems",
+        "time": "Innovative"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Power Your Business with Advanced Digital Solutions",
+    "subtitle": "We transform your business vision into technological reality",
+    "manual": "Manual exploration",
+    "auto": "Automatic playback",
+    "hoverManual": "🖱️ Move the cursor to explore other benefits",
+    "hoverAuto": "✨ Hover over any benefit to explore it",
+    "items": [
+      {
+        "title": "Specialized Technology Development",
+        "description": "Innovative solutions that drive your business toward the digital future."
+      },
+      {
+        "title": "Efficient and Scalable Solutions",
+        "description": "Optimized applications that grow with your company without limits."
+      },
+      {
+        "title": "Continuous Technical Support",
+        "description": "Comprehensive assistance to keep your systems running perfectly."
+      }
+    ]
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive technology solutions to take your business to the next level",
+    "legacy": {
+      "previous": "Previous",
+      "next": "Next",
+      "view": "View service"
+    },
+    "card": {
+      "hover": "Hover to see details",
+      "included": "Included services",
+      "close": "Move the cursor to close"
+    },
+    "items": [
+      {
+        "title": "Web Development",
+        "description": "We create custom websites that reflect your brand essence and meet your business goals.",
+        "details": [
+          "User-centered UI/UX design",
+          "Frontend and backend development",
+          "Responsive and accessible websites",
+          "Built-in SEO optimization"
+        ]
+      },
+      {
+        "title": "Advanced Cybersecurity",
+        "description": "We protect your digital business with the latest technologies and security best practices.",
+        "details": [
+          "Complete security audits",
+          "Protection against vulnerabilities",
+          "Secure protocol implementation",
+          "Continuous threat monitoring"
+        ]
+      },
+      {
+        "title": "AI Automation",
+        "description": "We implement intelligent solutions that automate processes and optimize business decision-making.",
+        "details": [
+          "Chatbots and virtual assistants",
+          "Automation for your business",
+          "Predictive data analytics",
+          "Intelligent recommendation systems"
+        ]
+      },
+      {
+        "title": "Optimization",
+        "description": "We improve the speed and efficiency of your digital platforms for an optimal user experience.",
+        "details": [
+          "Load-speed optimization",
+          "Server performance improvements",
+          "Database optimization",
+          "Bottleneck analysis and correction"
+        ]
+      },
+      {
+        "title": "Digital Marketing",
+        "description": "We implement effective strategies that maximize your presence in the digital world.",
+        "details": [
+          "Custom SEO/SEM strategies",
+          "Social media management",
+          "Automated email marketing",
+          "Metrics and conversion analysis"
+        ]
+      },
+      {
+        "title": "Custom Consulting",
+        "description": "We offer expert guidance and tailored solutions for your company's specific technology challenges.",
+        "details": [
+          "Strategic technology consulting",
+          "IT infrastructure assessment",
+          "Digital transformation planning",
+          "Technology selection guidance"
+        ]
+      },
+      {
+        "title": "Electronic Invoicing",
+        "description": "We integrate electronic invoicing systems to automate issuing, tax compliance, and administrative workflows.",
+        "details": [
+          "Integration with invoicing providers",
+          "Issuing and control of electronic documents",
+          "Accounting workflow automation",
+          "Secure reporting and traceability"
+        ]
+      }
+    ]
+  },
+  "techStack": {
+    "header": {
+      "title": "Our Technology Ecosystem",
+      "subtitle": "We combine the best tools and frameworks to create cutting-edge digital solutions"
+    },
+    "desktop": {
+      "title": "Specialties by Area",
+      "subtitle": "Select a category to see the specific technologies we use"
+    },
+    "navigation": {
+      "of": "of",
+      "categories": "categories",
+      "viewCategory": "View category",
+      "auto": "Automatic progression • Tap the dots to navigate"
+    },
+    "details": {
+      "technologies": "technologies"
+    },
+    "categories": {
+      "backend": {
+        "title": "Backend",
+        "description": "Robust servers and scalable APIs"
+      },
+      "frontend": {
+        "title": "Frontend",
+        "description": "Modern interfaces and smooth experiences"
+      },
+      "database": {
+        "title": "Database",
+        "description": "Efficient data management"
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Deployment and automation"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Online commerce platforms"
+      },
+      "cms": {
+        "title": "CMS",
+        "description": "Content management systems"
+      },
+      "security": {
+        "title": "Security",
+        "description": "Cybersecurity and pentesting"
+      }
+    }
+  },
+  "team": {
+    "title": "Our Stellar Team",
+    "subtitle": "Meet the visionaries shaping the digital future",
+    "viewProfile": "View profile of",
+    "members": [
+      {
+        "name": "Edwin Cabrera",
+        "role": "Pentester & Developer",
+        "bio": "Computer Systems and Networks Engineer, EWRC01 combines experience as a pentester and backend developer in cybersecurity and automation projects, standing out in CTF and Red Team challenges. Certified by Cisco and Microsoft, he drives technological growth through open-source initiatives."
+      },
+      {
+        "name": "Franklyn Velásquez",
+        "role": "Pentester & Developer",
+        "bio": "Pentester and frontend developer with a background in Computer Systems and Networks Engineering, certified in CCNAV7: Switching, Routing and Wireless Essentials, CCNAV7: Introduction to Networks, and IT Essentials, combining offensive cybersecurity and modern development for secure digital solutions."
+      },
+      {
+        "name": "Adonay Aragón",
+        "role": "Frontend Developer",
+        "bio": "Frontend developer with Computer Systems Engineering training from Universidad Gerardo Barrios, specialized in building modern and usable web interfaces, with experience in integrations."
+      }
+    ]
+  },
+  "clients": {
+    "title": "Our Clients",
+    "subtitle": "They trust us to drive their digital success",
+    "carousel": "Continuous carousel of client logos",
+    "client": "Client",
+    "seeAll": "See all clients",
+    "andDetails": "and details",
+    "eyebrow": "Digital partners",
+    "pauseHint": "Use the arrows or drag the carousel to revisit any client.",
+    "previousClient": "View previous clients",
+    "nextClient": "View next clients",
+    "card": {
+      "logoOf": "Logo of",
+      "clientLogo": "Client logo",
+      "viewDetails": "View details",
+      "detailsOf": "View details for",
+      "openProject": "Explore case",
+      "year": "Year",
+      "country": "Country"
+    },
+    "dialog": {
+      "mainImage": "Main image of",
+      "fallback": "We will add more information about this client soon.",
+      "photo": "Photo",
+      "of": "of",
+      "open": "Open project",
+      "descriptions": {
+        "herrerasshipping": "International logistics operator. We redesigned their website and optimized performance (Core Web Vitals).",
+        "sumachomeremodeling": "Remodeling company. Lead-focused landing page with dynamic forms and contact automation.",
+        "Zona Digital": "E-commerce with multi-step checkout, inventory, and payment gateways. We also helped resolve security findings from pentesting and optimize bugs inherited from previous development work unrelated to CodeMark.",
+        "Mr.H Coffee": "Brand website."
+      },
+      "previewing": "Preview",
+      "mainPhoto": "Main image"
+    },
+    "page": {
+      "title": "Our Clients",
+      "subtitle": "Real cases. Measurable impact. Discover who trusts us and what we have achieved together.",
+      "contact": "Contact us to quote your project",
+      "cta": "Shall we talk about your project?",
+      "stats": [
+        {
+          "value": "6+",
+          "label": "brands supported"
+        },
+        {
+          "value": "2",
+          "label": "active markets"
+        },
+        {
+          "value": "100%",
+          "label": "measurable focus"
+        }
+      ],
+      "eyebrow": "CodeMark portfolio",
+      "hint": "Tap a card to explore project details, services, and links."
+    }
+  },
+  "contact": {
+    "title": "Let’s Start Your Digital Project",
+    "successTitle": "Your request is on its way!",
+    "successSubtitle": "Thank you for trusting CodeMark. We will review your project details and reply soon to the email address you shared.",
+    "serverError": "Error sending the message.",
+    "networkError": "The message could not be sent. Please try again later.",
+    "phone": "Phone",
+    "location": "Location",
+    "steps": {
+      "personal": {
+        "title": "Personal Information",
+        "name": "Your name",
+        "email": "Your email address"
+      },
+      "details": {
+        "title": "Contact Details",
+        "company": "Your company name",
+        "countryCode": "Country code",
+        "phone": "Phone number",
+        "service": "Select a service",
+        "serviceHint": "Choose one",
+        "options": [
+          {
+            "value": "web",
+            "label": "Custom Web Development"
+          },
+          {
+            "value": "security",
+            "label": "Advanced Cybersecurity"
+          },
+          {
+            "value": "ai",
+            "label": "AI Automation"
+          },
+          {
+            "value": "optimization",
+            "label": "Optimization and Performance"
+          },
+          {
+            "value": "marketing",
+            "label": "Digital Marketing"
+          },
+          {
+            "value": "consulting",
+            "label": "Custom Consulting"
+          },
+          {
+            "value": "electronic-invoicing",
+            "label": "Electronic invoicing / TacuFact"
+          }
+        ],
+        "countrySearchPlaceholder": "Search country or code",
+        "countrySearchEmpty": "No country or code found."
+      },
+      "project": {
+        "title": "Project Details",
+        "message": "Tell us about your project"
+      }
+    },
+    "navigation": {
+      "previous": "← Previous",
+      "next": "Next →",
+      "sending": "Sending...",
+      "send": "Send"
+    },
+    "validation": {
+      "nameRequired": "Name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Invalid email format.",
+      "companyRequired": "Company name is required.",
+      "countryCodeRequired": "You must select a country code.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Invalid phone format. Use numbers only and 6 to 15 digits.",
+      "serviceRequired": "You must select a service.",
+      "messageRequired": "Message is required.",
+      "messageLength": "Message must be at least 10 characters."
+    },
+    "submissionUnavailable": "Form submission is not enabled yet. We will integrate a new secure contact method soon.",
+    "mailjetAccountBlocked": "The message could not be sent because the Mailjet account is temporarily blocked. Contact Mailjet support to reactivate it or update the credentials.",
+    "mailjetAuthError": "Mailjet authentication failed. Verify MAILJET_API_KEY, MAILJET_SECRET_KEY, and that the sender is validated.",
+    "successHighlight": "We also sent you a confirmation email with your request summary."
+  },
+  "footer": {
+    "tagline": "Transforming ideas into digital reality",
+    "rights": "Made in El Salvador. All rights reserved"
+  },
+  "demo": {
+    "network": {
+      "title": "Interactive Network Visualization",
+      "description": "This component creates an interactive network of nodes and connections that respond to your mouse movements.",
+      "color": "Color",
+      "density": "Density",
+      "value": "Value",
+      "interactive": "Interactive (responds to mouse)"
+    },
+    "smoothCursor": {
+      "title": "Smooth Cursor Demo",
+      "desktopHint": "Move your mouse around",
+      "mobileHint": "Tap anywhere to see the cursor"
+    }
+  },
+  "appWeb": {
+    "meta": {
+      "title": "TacuFact web app",
+      "description": "TacuFact is CodeMark's SaaS web app for electronic invoicing, inventory, and sales in El Salvador."
+    },
+    "badge": "Built at home, with pride",
+    "heroTitleStart": "We are Salvadorans building for",
+    "heroTitleAccent": "El Salvador.",
+    "descriptionPrefix": "At TacuFact, we understand the effort behind local businesses. Built so you can stop worrying about paperwork and focus on what you do best:",
+    "descriptionStrong": "selling.",
+    "primaryCta": "I want to know TacuFact",
+    "secondaryCta": "View features",
+    "highlights": [
+      {
+        "title": "More than invoices",
+        "description": "Manage inventory, sales, and electronic documents in one place, optimized for Salvadoran commerce."
+      },
+      {
+        "title": "Close to you, always",
+        "description": "Forget support teams that take days. We are right here in El Salvador to help when you need it."
+      }
+    ],
+    "localBadgeLabel": "Local commitment",
+    "localBadgeValue": "100% Salvadoran",
+    "metrics": [
+      {
+        "value": "24/7",
+        "label": "cloud"
+      },
+      {
+        "value": "SV",
+        "label": "local"
+      },
+      {
+        "value": "EI",
+        "label": "ready"
+      }
+    ],
+    "featuresBadge": "Features",
+    "featuresTitleStart": "Everything your business needs to",
+    "featuresTitleAccent": "invoice",
+    "featuresSubtitle": "Tools designed for Salvadoran companies that want to comply with the law without losing time.",
+    "features": [
+      {
+        "title": "Electronic invoicing",
+        "description": "Issue, review, and organize electronic tax documents with a simple and fast experience."
+      },
+      {
+        "title": "Connected inventory",
+        "description": "Keep stock, movements, and products synchronized with every business sale."
+      },
+      {
+        "title": "Sales and reports",
+        "description": "See revenue, daily activity, and key metrics to make better decisions."
+      },
+      {
+        "title": "Security by CodeMark",
+        "description": "Built with good practices, access control, and a foundation ready to grow with your company."
+      },
+      {
+        "title": "Document management",
+        "description": "Centralize receipts, customers, and records so everything is easy to find when needed."
+      },
+      {
+        "title": "Nearby support",
+        "description": "Real guidance in your language and with local context so you never get stuck."
+      },
+      {
+        "title": "For your accountant",
+        "description": "We also help your accountant with an exclusive user to manage accounting faster, in order, and without complications."
+      }
+    ],
+    "dashboardEyebrow": "Flagship product",
+    "dashboardTitle": "A clear dashboard to sell, invoice, and grow.",
+    "dashboardDescription": "We designed the experience so any team can use it: fast on desktop, comfortable on mobile, and ready for real operations.",
+    "dashboardCta": "Request a demo",
+    "previewTitle": "Business dashboard",
+    "previewCards": [
+      {
+        "label": "Sales today",
+        "value": "$1,240"
+      },
+      {
+        "label": "Invoices",
+        "value": "86"
+      },
+      {
+        "label": "Low stock",
+        "value": "12"
+      }
+    ],
+    "previewFlow": "Compliance and operations",
+    "previewSteps": [
+      "Documents organized by customer",
+      "Inventory updated automatically",
+      "Reports ready to review"
+    ],
+    "accountantTitle": "We also help your accountant",
+    "accountantDescription": "We know accounting is teamwork. That is why we include an exclusive user for your accountant, so they can manage your accounting faster, in order, and without complications.",
+    "sliderTitle": "Real product views",
+    "sliderHint": "Replace these files with your real screenshots in `public/images/app-web/product-slider/`.",
+    "madeBy": "TacuFact was built by the CodeMark team.",
+    "madeBySubtitle": "Designed, developed, and cared for by our team for Salvadoran businesses that want to sell and invoice without friction."
+  }
+}

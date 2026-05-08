@@ -14,46 +14,16 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark")
+  const [theme, setTheme] = useState<Theme>("light")
   // const [mounted, setMounted] = useState(false) // No longer needed for this specific hydration fix
 
-  // Al inicio del componente ThemeProvider, antes del return
   useEffect(() => {
-    // Este script se ejecuta una sola vez al montar el componente
-    // y asegura que el tema dark se aplique inmediatamente
-    const script = document.createElement("script")
-    script.innerHTML = `
-    (function() {
-      // Si no hay tema guardado, usar dark por defecto
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else if (localStorage.getItem('theme') === 'light') {
-        // Si el tema guardado es light, quitar la clase dark
-        document.documentElement.classList.remove('dark');
-      }
-    })()
-  `
-    script.async = false
-    document.head.appendChild(script)
+    const savedTheme = localStorage.getItem("theme") as Theme | null
+    const initialTheme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light"
 
-    return () => {
-      document.head.removeChild(script)
-    }
-  }, [])
-
-  useEffect(() => {
-    // Obtener tema guardado o usar "dark" como predeterminado
-    const savedTheme = localStorage.getItem("theme") as Theme
-    // Si hay un tema guardado, usarlo; de lo contrario, usar "dark"
-    const initialTheme = savedTheme || "dark"
     setTheme(initialTheme)
-
-    // Asegurarse de que la clase "dark" esté presente si el tema es "dark"
-    // o se elimine si el tema es "light"
+    localStorage.setItem("theme", initialTheme)
     document.documentElement.classList.toggle("dark", initialTheme === "dark")
-
-    // setMounted(true) // No longer needed
   }, [])
 
   const toggleTheme = () => {
