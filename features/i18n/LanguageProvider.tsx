@@ -16,11 +16,11 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("es")
+  const [language, setLanguageState] = useState<Language>("en")
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("language") as Language | null
-    const initialLanguage = savedLanguage === "en" || savedLanguage === "es" ? savedLanguage : "es"
+    const initialLanguage = savedLanguage === "en" || savedLanguage === "es" ? savedLanguage : "en"
     setLanguageState(initialLanguage)
     document.documentElement.lang = initialLanguage
   }, [])
