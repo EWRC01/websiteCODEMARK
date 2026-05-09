@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Oculta visualmente el badge flotante de reCAPTCHA v3 sin quitar ni bloquear el script. */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
 @layer base {
   :root {
     /* Colores base mejorados para el tema claro */
