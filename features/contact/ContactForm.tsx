@@ -22,6 +22,7 @@ import { useLanguage } from "@/features/i18n/LanguageProvider"
 const RECAPTCHA_ACTION = "contact_submit"
 const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 const LOCAL_RECAPTCHA_BYPASS_TOKEN = "local-dev-recaptcha-bypass"
+const LOCAL_RECAPTCHA_HOSTNAMES = new Set(["localhost", "127.0.0.1", "::1"])
 
 declare global {
   interface Window {
@@ -84,12 +85,10 @@ export default function ContactForm() {
   }
 
   const getRecaptchaToken = async () => {
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-      return LOCAL_RECAPTCHA_BYPASS_TOKEN
-    }
+    const isLocalRecaptchaHost = LOCAL_RECAPTCHA_HOSTNAMES.has(window.location.hostname)
 
     if (!recaptchaSiteKey) {
-      return null
+      return isLocalRecaptchaHost ? LOCAL_RECAPTCHA_BYPASS_TOKEN : null
     }
 
     const grecaptcha = await new Promise<Window["grecaptcha"]>((resolve) => {
