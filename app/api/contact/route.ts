@@ -49,6 +49,9 @@ type MailjetMessage = {
   TextPart: string
   HTMLPart: string
   CustomID: string
+  TrackOpens?: "disabled"
+  TrackClicks?: "disabled"
+  Headers?: Record<string, string>
 }
 
 type MailjetSendResult =
@@ -224,6 +227,18 @@ async function parseMailjetError(response: Response): Promise<MailjetErrorPayloa
   }
 }
 
+function buildTransactionalMailjetOptions(customId: string) {
+  return {
+    TrackOpens: "disabled" as const,
+    TrackClicks: "disabled" as const,
+    Headers: {
+      "Auto-Submitted": "auto-generated",
+      "X-Auto-Response-Suppress": "All",
+      "X-Entity-Ref-ID": customId,
+    },
+  }
+}
+
 function getMailjetErrorCode(response: Response, error: MailjetErrorPayload): ContactApiErrorCode {
   const message = error.ErrorMessage?.toLowerCase() ?? ""
 
@@ -325,6 +340,7 @@ export async function POST(request: Request) {
     Email: emailAddress,
     Name: env.adminName,
   }))
+  const adminCustomId = `contact-admin-${payload.language}-${payload.service}`
   const adminMessage: MailjetMessage = {
     From: from,
     To: adminRecipients,
@@ -335,7 +351,8 @@ export async function POST(request: Request) {
     Subject: email.subject,
     TextPart: email.text,
     HTMLPart: email.html,
-    CustomID: `contact-admin-${payload.language}-${payload.service}`,
+    CustomID: adminCustomId,
+    ...buildTransactionalMailjetOptions(adminCustomId),
   }
 
   const adminResult = await sendMailjetMessage(authToken, adminMessage)
@@ -344,6 +361,7 @@ export async function POST(request: Request) {
     return apiError(adminResult.code, adminResult.status, adminResult.message)
   }
 
+  const confirmationCustomId = `contact-confirmation-${payload.language}-${payload.service}`
   const confirmationMessage: MailjetMessage = {
     From: from,
     To: [
@@ -359,7 +377,8 @@ export async function POST(request: Request) {
     Subject: confirmationEmail.subject,
     TextPart: confirmationEmail.text,
     HTMLPart: confirmationEmail.html,
-    CustomID: `contact-confirmation-${payload.language}-${payload.service}`,
+    CustomID: confirmationCustomId,
+    ...buildTransactionalMailjetOptions(confirmationCustomId),
   }
   const confirmationResult = await sendMailjetMessage(authToken, confirmationMessage)
 

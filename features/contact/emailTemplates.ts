@@ -26,6 +26,18 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;")
 }
 
+function normalizeSiteUrl(siteUrl?: string) {
+  const fallbackUrl = "https://codemarksv.com/"
+
+  try {
+    const url = new URL(siteUrl || fallbackUrl)
+    return { hostname: url.hostname.replace(/^www\./, "") }
+  } catch {
+    const url = new URL(fallbackUrl)
+    return { hostname: url.hostname.replace(/^www\./, "") }
+  }
+}
+
 function brandLogoMarkup() {
   return `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;min-width:260px;">
@@ -55,8 +67,9 @@ function getCopy(language: ContactEmailLanguage) {
         message: "Project message",
         language: "Selected language",
       },
-      reply: "Reply directly to this email to contact the lead.",
-      footer: "This message was sent automatically from the CodeMark website.",
+      reply: "Reply directly to this email to continue the conversation with the lead.",
+      source: "Verified website inquiry",
+      footer: "Internal notification sent by the CodeMark website contact form.",
     }
   }
 
@@ -74,8 +87,9 @@ function getCopy(language: ContactEmailLanguage) {
       message: "Mensaje del proyecto",
       language: "Idioma seleccionado",
     },
-    reply: "Responde directamente a este correo para contactar al lead.",
-    footer: "Este mensaje fue enviado automáticamente desde el sitio web de CodeMark.",
+    reply: "Responde directamente a este correo para continuar la conversación con el lead.",
+    source: "Consulta verificada desde el sitio web",
+    footer: "Notificación interna enviada por el formulario de contacto de CodeMark.",
   }
 }
 
@@ -87,8 +101,9 @@ function detailRow(label: string, value: string) {
     </tr>`
 }
 
-export function buildContactEmail(payload: ContactEmailPayload, _siteUrl?: string) {
+export function buildContactEmail(payload: ContactEmailPayload, siteUrl?: string) {
   const copy = getCopy(payload.language)
+  const site = normalizeSiteUrl(siteUrl)
   const safeMessage = escapeHtml(payload.message.trim()).replace(/\n/g, "<br />")
 
   const html = `<!doctype html>
@@ -112,7 +127,7 @@ export function buildContactEmail(payload: ContactEmailPayload, _siteUrl?: strin
             </tr>
             <tr>
               <td style="padding:30px 28px 18px 28px;font-family:Arial,Helvetica,sans-serif;">
-                <div style="display:inline-block;padding:7px 12px;border-radius:999px;background:#ECFEFF;color:#0891B2;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">CodeMark</div>
+                <div style="display:inline-block;padding:7px 12px;border-radius:999px;background:#ECFEFF;color:#0891B2;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">${escapeHtml(copy.source)}</div>
                 <h1 style="margin:18px 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.18;color:${brand.dark};font-weight:800;">${escapeHtml(copy.title)}</h1>
                 <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:${brand.muted};">${escapeHtml(copy.subtitle)}</p>
               </td>
@@ -144,7 +159,7 @@ export function buildContactEmail(payload: ContactEmailPayload, _siteUrl?: strin
             </tr>
             <tr>
               <td style="padding:20px 28px;background:#0F172A;font-family:Arial,Helvetica,sans-serif;text-align:center;">
-                <p style="margin:0;font-size:12px;line-height:1.6;color:#CBD5E1;">${escapeHtml(copy.footer)}</p>
+                <p style="margin:0;font-size:12px;line-height:1.6;color:#CBD5E1;">${escapeHtml(copy.footer)} ${escapeHtml(site.hostname)}</p>
               </td>
             </tr>
           </table>
@@ -169,6 +184,7 @@ export function buildContactEmail(payload: ContactEmailPayload, _siteUrl?: strin
     payload.message.trim(),
     "",
     copy.reply,
+    `${copy.footer} ${site.hostname}`,
   ].join("\n")
 
   return { subject: copy.subject, html, text }
@@ -181,13 +197,15 @@ function getConfirmationCopy(language: ContactEmailLanguage) {
       preview: "Thank you for contacting CodeMark. We received your project request.",
       title: "We received your request",
       greeting: "Hi",
-      intro: "Thank you for contacting CodeMark. Our team received your information and will review it shortly.",
-      next: "We will get back to you as soon as possible using the contact details you provided.",
+      intro: "Thank you for contacting CodeMark. Your request was received and our team will review it shortly.",
+      next: "We will reply using the contact details you provided. No action is needed from you right now.",
+      reason: "You are receiving this confirmation because this email address was entered in the CodeMark contact form.",
       summary: "Request summary",
       service: "Requested service",
       company: "Company",
-      message: "Your message",
-      footer: "This confirmation was sent automatically from the CodeMark website.",
+      message: "Message status",
+      messageReceived: "Your project message was received and saved for review by our team.",
+      footer: "This is a transactional confirmation from CodeMark.",
     }
   }
 
@@ -196,19 +214,21 @@ function getConfirmationCopy(language: ContactEmailLanguage) {
     preview: "Gracias por contactar a CodeMark. Recibimos tu solicitud de proyecto.",
     title: "Recibimos tu solicitud",
     greeting: "Hola",
-    intro: "Gracias por contactar a CodeMark. Nuestro equipo recibió tu información y la revisará pronto.",
-    next: "Te responderemos lo antes posible usando los datos de contacto que nos compartiste.",
+    intro: "Gracias por contactar a CodeMark. Recibimos tu solicitud y nuestro equipo la revisará pronto.",
+    next: "Te responderemos usando los datos de contacto que nos compartiste. No necesitas realizar ninguna acción por ahora.",
+    reason: "Recibes esta confirmación porque este correo fue ingresado en el formulario de contacto de CodeMark.",
     summary: "Resumen de tu solicitud",
     service: "Servicio solicitado",
     company: "Empresa",
-    message: "Tu mensaje",
-    footer: "Esta confirmación fue enviada automáticamente desde el sitio web de CodeMark.",
+    message: "Estado del mensaje",
+    messageReceived: "Recibimos tu mensaje de proyecto y quedó guardado para revisión de nuestro equipo.",
+    footer: "Esta es una confirmación transaccional de CodeMark.",
   }
 }
 
-export function buildContactConfirmationEmail(payload: ContactEmailPayload, _siteUrl?: string) {
+export function buildContactConfirmationEmail(payload: ContactEmailPayload, siteUrl?: string) {
   const copy = getConfirmationCopy(payload.language)
-  const safeMessage = escapeHtml(payload.message.trim()).replace(/\n/g, "<br />")
+  const site = normalizeSiteUrl(siteUrl)
   const firstName = payload.name.trim().split(/\s+/)[0] || payload.name.trim()
 
   const html = `<!doctype html>
@@ -244,18 +264,19 @@ export function buildContactConfirmationEmail(payload: ContactEmailPayload, _sit
                   <p style="margin:0 0 8px 0;font-size:15px;line-height:1.6;color:${brand.dark};"><strong>${escapeHtml(copy.service)}:</strong> ${escapeHtml(payload.serviceLabel || payload.service)}</p>
                   <p style="margin:0 0 8px 0;font-size:15px;line-height:1.6;color:${brand.dark};"><strong>${escapeHtml(copy.company)}:</strong> ${escapeHtml(payload.company.trim())}</p>
                   <p style="margin:16px 0 8px 0;font-size:13px;font-weight:800;color:${brand.muted};text-transform:uppercase;letter-spacing:0.08em;">${escapeHtml(copy.message)}</p>
-                  <p style="margin:0;font-size:15px;line-height:1.7;color:${brand.dark};">${safeMessage}</p>
+                  <p style="margin:0;font-size:15px;line-height:1.7;color:${brand.dark};">${escapeHtml(copy.messageReceived)}</p>
                 </div>
               </td>
             </tr>
             <tr>
               <td style="padding:8px 28px 30px 28px;font-family:Arial,Helvetica,sans-serif;">
                 <p style="margin:0;padding:14px 16px;border-left:4px solid ${brand.primary};background:#ECFEFF;border-radius:12px;font-size:14px;line-height:1.6;color:#155E75;">${escapeHtml(copy.next)}</p>
+                <p style="margin:14px 0 0 0;font-size:12px;line-height:1.6;color:${brand.muted};">${escapeHtml(copy.reason)} ${escapeHtml(site.hostname)}</p>
               </td>
             </tr>
             <tr>
               <td style="padding:20px 28px;background:#0F172A;font-family:Arial,Helvetica,sans-serif;text-align:center;">
-                <p style="margin:0;font-size:12px;line-height:1.6;color:#CBD5E1;">${escapeHtml(copy.footer)}</p>
+                <p style="margin:0;font-size:12px;line-height:1.6;color:#CBD5E1;">${escapeHtml(copy.footer)} ${escapeHtml(site.hostname)}</p>
               </td>
             </tr>
           </table>
@@ -275,7 +296,10 @@ export function buildContactConfirmationEmail(payload: ContactEmailPayload, _sit
     `${copy.company}: ${payload.company.trim()}`,
     "",
     `${copy.message}:`,
-    payload.message.trim(),
+    copy.messageReceived,
+    "",
+    `${copy.reason} ${site.hostname}`,
+    `${copy.footer} ${site.hostname}`,
   ].join("\n")
 
   return { subject: copy.subject, html, text }
